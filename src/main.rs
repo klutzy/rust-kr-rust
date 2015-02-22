@@ -1,4 +1,4 @@
-#![feature(env, io, path, rustdoc)]
+#![feature(env, old_io, old_path, rustdoc)]
 
 #[macro_use] extern crate log;
 extern crate env_logger;
@@ -281,7 +281,5 @@ fn main() {
     };
 
     let server = Server::http(Ipv4Addr(127, 0, 0, 1), port);
-    let mut listening = server.listen_threads(rskr, num_threads).unwrap();
-    debug!("listening...");
-    listening.await();
+    server.listen_threads(rskr, num_threads).unwrap();
 }
